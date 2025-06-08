@@ -16,7 +16,6 @@ public class Lec01FluxCreate {
                     } while (!country.equalsIgnoreCase("Canada"));
                 })
                 .subscribe(Util.subscriber());
-
-
     }
+
 }
