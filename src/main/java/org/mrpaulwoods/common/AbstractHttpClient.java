@@ -16,4 +16,6 @@ public abstract class AbstractHttpClient {
                 .runOn(loopResources)
                 .baseUrl(BASE_URL);
     }
+
+
 }
