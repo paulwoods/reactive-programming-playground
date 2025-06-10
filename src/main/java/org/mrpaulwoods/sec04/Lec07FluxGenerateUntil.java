@@ -5,9 +5,9 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import reactor.core.publisher.Flux;
 
-public class Lev07FluxGenerateUntil {
+public class Lec07FluxGenerateUntil {
 
-    private static final Logger log = LoggerFactory.getLogger(Lev07FluxGenerateUntil.class);
+    private static final Logger log = LoggerFactory.getLogger(Lec07FluxGenerateUntil.class);
 
     public static void main(String[] args) {
 
