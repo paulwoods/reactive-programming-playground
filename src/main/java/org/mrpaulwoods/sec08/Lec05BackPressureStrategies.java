@@ -4,6 +4,7 @@ import org.mrpaulwoods.common.Util;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import reactor.core.publisher.Flux;
+import reactor.core.publisher.FluxSink;
 import reactor.core.scheduler.Schedulers;
 
 import java.time.Duration;
@@ -21,14 +22,17 @@ public class Lec05BackPressureStrategies {
                         Util.sleep(Duration.ofMillis(50));
                     }
                     sink.complete();
-                }).cast(Integer.class)
+                        },
+                        FluxSink.OverflowStrategy.IGNORE // alternate wayof setting backpressure strategy
+                ).cast(Integer.class)
                 .subscribeOn(Schedulers.parallel());
 
         producer
 //                .onBackpressureBuffer() // buffer strategy
 //                .onBackpressureError() // error strategy
 //                .onBackpressureBuffer(10) // holds 10 items. throws if producer produces more
-                .onBackpressureDrop() // drops values when the queue is full
+//                .onBackpressureDrop() // drops values when the queue is full
+                .onBackpressureLatest() // keeps the latest value, instead of dropping them
                 .log()
                 .limitRate(1)
                 .publishOn(Schedulers.boundedElastic())
