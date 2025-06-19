@@ -2,12 +2,18 @@ package org.mrpaulwoods.common;
 
 import com.github.javafaker.Faker;
 import org.reactivestreams.Subscriber;
+import org.slf4j.Logger;
+import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
 
 import java.time.Duration;
+import java.util.function.UnaryOperator;
+
+import static org.slf4j.LoggerFactory.getLogger;
 
 public class Util {
 
+    private static final Logger log = getLogger(Util.class);
     private static final Faker faker = Faker.instance();
 
     public static <T> Subscriber<T> subscriber() {
@@ -43,6 +49,13 @@ public class Util {
         } catch (InterruptedException e) {
             throw new RuntimeException(e);
         }
+    }
+
+    public static <T> UnaryOperator<Flux<T>> fluxLogger(String name) {
+        return flux -> flux
+                .doOnSubscribe(s -> log.info("subscribing to {}", name))
+                .doOnCancel(() -> log.info("cancelling {}", name))
+                .doOnComplete(() -> log.info("completed {}", name));
     }
 
 }
