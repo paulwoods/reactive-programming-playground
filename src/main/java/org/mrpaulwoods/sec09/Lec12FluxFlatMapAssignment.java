@@ -17,5 +17,4 @@ public class Lec12FluxFlatMapAssignment {
         Util.sleepSeconds(20);
     }
 
-
 }
