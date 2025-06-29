@@ -1,4 +1,4 @@
-package org.mrpaulwoods.sec10.assignment;
+package org.mrpaulwoods.sec10.assignment.buffer;
 
 import org.mrpaulwoods.common.Util;
 import reactor.core.publisher.Flux;

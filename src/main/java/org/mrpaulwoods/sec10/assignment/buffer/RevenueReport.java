@@ -1,4 +1,4 @@
-package org.mrpaulwoods.sec10.assignment;
+package org.mrpaulwoods.sec10.assignment.buffer;
 
 import java.time.OffsetDateTime;
 import java.util.Map;

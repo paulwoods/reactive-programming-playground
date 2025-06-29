@@ -1,4 +1,4 @@
-package org.mrpaulwoods.sec10;
+package org.mrpaulwoods.sec10.assignment.window;
 
 import org.mrpaulwoods.common.Util;
 import reactor.core.publisher.Flux;
