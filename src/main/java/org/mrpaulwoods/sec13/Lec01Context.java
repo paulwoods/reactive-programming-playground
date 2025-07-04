@@ -21,14 +21,11 @@ public class Lec01Context {
     }
 
     private static Mono<String> getWelcomeMessage1() {
-        return Mono
-                .deferContextual(ctx -> {
-                    log.info("context: {}", ctx);
-                    return Mono.fromSupplier(() -> "Welcome ");
-
-                });
+        return Mono.deferContextual(ctx -> {
+            log.info("context: {}", ctx);
+            return Mono.fromSupplier(() -> "Welcome ");
+        });
     }
-
 
     public static void demo2() {
         getWelcomeMessage2()
@@ -39,14 +36,13 @@ public class Lec01Context {
     }
 
     private static Mono<String> getWelcomeMessage2() {
-        return Mono
-                .deferContextual(ctx -> {
-                    if (ctx.hasKey("user")) {
-                        return Mono.fromSupplier(() -> "Welcome %s".formatted((String) ctx.get("user")));
-                    }
+        return Mono.deferContextual(ctx -> {
+            if (ctx.hasKey("user")) {
+                return Mono.fromSupplier(() -> "Welcome %s".formatted((String) ctx.get("user")));
+            }
 
-                    return Mono.error(new RuntimeException("401 unauthenticated"));
-                });
+            return Mono.error(new RuntimeException("401 unauthenticated"));
+        });
     }
 
 }
